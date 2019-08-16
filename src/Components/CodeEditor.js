@@ -15,7 +15,10 @@ const CodeEditorStyled = styled.textarea`
 `
 
 const CodeEditor = props => (
-  <CodeEditorStyled className="codeFont" onKeyUp={(e) => props.setCode(e.target.value)}>
+  <CodeEditorStyled
+    className="codeFont"
+    onKeyUp={(e) => props.setCode(e.target.value)}
+    placeholder='Write AQA assembly here...'>
   </CodeEditorStyled>
 )
 

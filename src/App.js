@@ -3,6 +3,7 @@ import CodeEditor from './Components/CodeEditor'
 import CPUVisualiser from './Components/CPUVisualiser'
 import { } from './Lib/icons'
 import parseSyntax from './Lib/syntaxParser'
+import SyntaxHighlighter from './Components/SyntaxHighliter'
 
 const REGISTER_COUNT = 12
 const comparers = {
@@ -90,6 +91,7 @@ class App extends Component {
       return
     }
 
+    if (line.type === 'whitespace') return
     if (line.type === 'syntax-error') return
 
     // Command
@@ -160,7 +162,7 @@ class App extends Component {
   }
 
   setCode (code) {
-    const syntaxTree = parseSyntax(code)
+    let syntaxTree = parseSyntax(code) || []
 
     this.setState({
       code,
@@ -171,6 +173,7 @@ class App extends Component {
   render () {
     return (
       <Fragment>
+        <SyntaxHighlighter syntaxTree={this.state.syntaxTree} />
         <CodeEditor setCode={this.setCode.bind(this)}></CodeEditor>
         <CPUVisualiser {...this.state} run={this.run.bind(this)} />
       </Fragment>

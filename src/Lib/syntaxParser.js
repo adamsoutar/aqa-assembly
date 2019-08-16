@@ -8,7 +8,12 @@ function parseSyntax (code) {
 
   // Split by newline
   for (const line of code.split(/\r?\n/)) {
-    if (line.trim() === '') continue
+    if (line.trim() === '') {
+      lines.push({
+        type: 'whitespace'
+      })
+      continue
+    }
 
     const parts = line.trim().split(' ')
     const keyword = parts[0]
@@ -45,24 +50,28 @@ function parseSyntax (code) {
       if (part[0] === 'R') {
         newParts.push({
           type: 'register',
-          number: parseInt(part.substring(1), 10)
+          number: parseInt(part.substring(1), 10),
+          raw: part
         })
       } else if (part[0] === '#') {
         newParts.push({
           type: 'decimal',
-          number: parseInt(part.substring(1), 10)
+          number: parseInt(part.substring(1), 10),
+          raw: part
         })
       } else {
         if (newParts[0].word[0] === 'B') {
           newParts.push({
-            type: 'label',
-            label: part
+            type: 'labelArg',
+            label: part,
+            raw: part
           })
           continue
         }
         newParts.push({
-          type: 'memory-ref',
-          number: parseInt(part, 10)
+          type: 'memoryRef',
+          number: parseInt(part, 10),
+          raw: part
         })
       }
     }
