@@ -4,6 +4,7 @@ import CPUVisualiser from './Components/CPUVisualiser'
 import { } from './Lib/icons'
 import parseSyntax from './Lib/syntaxParser'
 import SyntaxHighlighter from './Components/SyntaxHighliter'
+import CounterPointer from './Components/CounterPointer'
 
 const REGISTER_COUNT = 12
 const comparers = {
@@ -34,6 +35,7 @@ class App extends Component {
       num1: 0,
       num2: 0
     }
+    this.toPause = false
   }
 
   getInitialCPUState () {
@@ -59,6 +61,20 @@ class App extends Component {
     })
   }
 
+  resetCPU () {
+    const cpuState = this.getInitialCPUState()
+    this.memory = cpuState.memory
+    this.registers = cpuState.registers
+    this.programCounter = cpuState.programCounter
+    this.labels = {}
+    this.comparison = {
+      num1: 0,
+      num2: 0
+    }
+    this.toPause = false
+    this.newCPUState()
+  }
+
   run () {
     this.programCounter = 0
     this.nextLine()
@@ -72,6 +88,10 @@ class App extends Component {
       this.newCPUState()
 
       if (this.programCounter < this.state.syntaxTree.length) {
+        if (this.toPause) {
+          this.toPause = false
+          return
+        }
         this.nextLine()
       }
     }, 0)
@@ -173,9 +193,14 @@ class App extends Component {
   render () {
     return (
       <Fragment>
+        <CounterPointer line={this.state.programCounter} />
         <SyntaxHighlighter syntaxTree={this.state.syntaxTree} />
         <CodeEditor setCode={this.setCode.bind(this)}></CodeEditor>
-        <CPUVisualiser {...this.state} run={this.run.bind(this)} />
+        <CPUVisualiser
+          {...this.state}
+          pause={() => this.toPause = true}
+          reset={this.resetCPU.bind(this)}
+          run={this.run.bind(this)} />
       </Fragment>
     )
   }

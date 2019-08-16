@@ -12,6 +12,7 @@ const CodeEditorStyled = styled.textarea`
   float: left;
   resize: none;
   font-size: 20px;
+  line-height: 24px;
 `
 
 const CodeEditor = props => (

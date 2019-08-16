@@ -25,9 +25,10 @@ const RunBarButton = styled.button`
   background: #22252c;
   border-radius: 5px;
   height: 100%;
-  width: calc(25% - 10px);
+  width: 30%;
   padding: 10px;
   color: white;
+  font-size: 15px;
 `
 const MemoryHeaderStyled = styled.div`
   padding: 10px;
@@ -51,10 +52,15 @@ const CPUVisualiser = props => (
     <MemoryList items={props.memory} />
 
     <RunBar>
-      <RunBarButton onClick={props.run}>Run</RunBarButton>
-      <RunBarButton />
-      <RunBarButton />
-      <RunBarButton />
+      <RunBarButton onClick={props.reset}>
+        <FontAwesomeIcon icon='undo-alt' />
+      </RunBarButton>
+      <RunBarButton onClick={props.run}>
+        <FontAwesomeIcon icon='play' />
+      </RunBarButton>
+      <RunBarButton onClick={props.pause}>
+        <FontAwesomeIcon icon='pause' />
+      </RunBarButton>
     </RunBar>
   </CPUVisualiserContainer>
 )

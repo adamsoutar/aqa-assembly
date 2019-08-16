@@ -9,6 +9,7 @@ const SyntaxHighlighterStyled = styled.div`
   color: white;
   font-size: 20px;
   pointer-events: none;
+  line-height: 24px;
 
   /* These colours are from Atom One Dark */
   & .keyword {
