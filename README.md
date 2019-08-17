@@ -10,7 +10,7 @@ I recommend reading the spec linked below before playing around
 
 http://overflo.me/aqa
 
-## What is AQA assembly?
+## What is AQA assembly?
 
 AQA Assembly is an assembly syntax written for A-level Computer Science papers. This interpreter allows you to practise writing working AQA assembly at home/while revising, instead of winging it in the exam. A description of the syntax and instruction set is available [here](https://filestore.aqa.org.uk/resources/computing/AQA-75162-75172-ALI.PDF)
 
