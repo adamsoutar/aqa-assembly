@@ -17,11 +17,11 @@ AQA Assembly is an assembly syntax written for A-level Computer Science papers. 
 ## Run it yourself
 
 ```bash
-mkdir aqa && cd aqa
 git clone https://github.com/adamsoutar/aqa-assembly
+cd aqa-assembly
 npm i && npm start
 ```
 
 ## The stack
 
-Everything is run in the frontend. There are no dependencies besides `styled-components` and those included with `create-react-app`. Everything is in the source, even down to my home-made syntax highlighting solution.
+Everything is run in the frontend. There are no dependencies besides styled-components, Font Awesome and those included with create-react-app. Everything is in the source, even down to my home-made syntax highlighting solution.
